@@ -1,0 +1,724 @@
+<sdf version='1.7'>
+  <model name='rmaluam'>
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.001103 -1.8e-05 -4e-06 0 -0 0</pose>
+        <mass>4.68848</mass>
+        <inertia>
+          <ixx>0.430475</ixx>
+          <ixy>-1.79316e-05</ixy>
+          <ixz>-1.23322e-06</ixz>
+          <iyy>0.430587</iyy>
+          <iyz>4.52382e-07</iyz>
+          <izz>0.592651</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+<material>
+  <!-- Define a reflective very dark gray material -->
+  <ambient>0.1 0.1 0.1 1</ambient>
+  <diffuse>0.1 0.1 0.1 1</diffuse>
+  <specular>0.3 0.3 0.3 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='Prop_3_joint' type='revolute'>
+      <pose relative_to='base_link'>0.18135 0.314107 0 1.5708 -0 2.42964</pose>
+      <parent>base_link</parent>
+      <child>prop_3_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_3_link'>
+      <pose relative_to='Prop_3_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0 -0 0 -0 0</pose>
+        <mass>0.0279209</mass>
+        <inertia>
+          <ixx>0.000201384</ixx>
+          <ixy>1.22166e-17</ixy>
+          <ixz>-3.50547e-05</ixz>
+          <iyy>0.000209949</iyy>
+          <iyz>1.02204e-17</iyz>
+          <izz>8.87986e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_3_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop_3_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_3_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='arm_1_joint' type='revolute'>
+      <pose relative_to='base_link'>0.0064 -0.010161 -0.0527 1.5708 -0 0</pose>
+      <parent>base_link</parent>
+      <child>arm_1_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_1_link'>
+      <pose relative_to='arm_1_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.000278 -0.025893 -0.000459 0 -0 0</pose>
+        <mass>0.0466133</mass>
+        <inertia>
+          <ixx>1.2004e-05</ixx>
+          <ixy>1.03122e-08</ixy>
+          <ixz>-8.26981e-07</ixz>
+          <iyy>7.48803e-06</iyy>
+          <iyz>1.70344e-08</iyz>
+          <izz>1.11387e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_1_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='arm_1_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_1_link.STL</uri>
+          </mesh>
+        </geometry>
+       <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='arm_2_joint' type='revolute'>
+      <pose relative_to='arm_1_link'>0.013206 -0.0388 0.021814 -1.5708 0.54438 0</pose>
+      <parent>arm_1_link</parent>
+      <child>arm_2_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_2_link'>
+      <pose relative_to='arm_2_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.087297 0.025818 -0.044399 0 -0 0</pose>
+        <mass>0.0881361</mass>
+        <inertia>
+          <ixx>2.0389e-05</ixx>
+          <ixy>1.08647e-08</ixy>
+          <ixz>1.61399e-07</ixz>
+          <iyy>2.80387e-05</iyy>
+          <iyz>1.02876e-08</iyz>
+          <izz>2.41553e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_2_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='arm_2_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_2_link.STL</uri>
+          </mesh>
+        </geometry>
+      <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='arm_3_joint' type='revolute'>
+      <pose relative_to='arm_2_link'>0.11089 0.051 -0.068288 3.14159 -0 0</pose>
+      <parent>arm_2_link</parent>
+      <child>arm_3_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_3_link'>
+      <pose relative_to='arm_3_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.088496 0.025194 0.001091 0 -0 0</pose>
+        <mass>0.0841268</mass>
+        <inertia>
+          <ixx>1.54135e-05</ixx>
+          <ixy>1.51426e-08</ixy>
+          <ixz>-6.99846e-07</ixz>
+          <iyy>2.30716e-05</iyy>
+          <iyz>-3.87888e-09</iyz>
+          <izz>2.3716e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_3_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='arm_3_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_3_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='arm_4_joint' type='revolute'>
+      <pose relative_to='arm_3_link'>-0.124 0 0.001059 0 -0 0</pose>
+      <parent>arm_3_link</parent>
+      <child>arm_4_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_4_link'>
+      <pose relative_to='arm_4_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.007441 0.025511 0.045081 0 -0 0</pose>
+        <mass>0.093795</mass>
+        <inertia>
+          <ixx>2.2174e-05</ixx>
+          <ixy>-5.361e-08</ixy>
+          <ixz>-2.6295e-06</ixz>
+          <iyy>2.6687e-05</iyy>
+          <iyz>-1.5961e-08</iyz>
+          <izz>3.1188e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_4_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_4_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='arm_4_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/arm_4_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='gripper_left_joint' type='prismatic'>
+      <pose relative_to='arm_4_link'>-0.022963 0.0255 0.06824 0.000859 0.000523 -0.002552</pose>
+      <parent>arm_4_link</parent>
+      <child>gripper_left_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='gripper_left_link'>
+      <pose relative_to='gripper_left_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.008516 -0.038248 0.025138 0 -0 0</pose>
+        <mass>0.01653</mass>
+        <inertia>
+          <ixx>6.782e-06</ixx>
+          <ixy>1.3549e-07</ixy>
+          <ixz>9.1033e-07</ixz>
+          <iyy>9.5271e-06</iyy>
+          <iyz>-1.3399e-07</iyz>
+          <izz>4.3674e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='gripper_left_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/gripper_left_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='gripper_left_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/gripper_left_link.STL</uri>
+          </mesh>
+        </geometry>
+       <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='gripper_right_joint' type='prismatic'>
+      <pose relative_to='arm_4_link'>-0.022963 0.0255 0.06824 0.000859 0.000523 -0.002552</pose>
+      <parent>arm_4_link</parent>
+      <child>gripper_right_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='gripper_right_link'>
+      <pose relative_to='gripper_right_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.008478 0.041125 0.025151 0 -0 0</pose>
+        <mass>0.01653</mass>
+        <inertia>
+          <ixx>6.7753e-06</ixx>
+          <ixy>-5.4166e-08</ixy>
+          <ixz>9.1471e-07</ixz>
+          <iyy>9.5302e-06</iyy>
+          <iyz>1.6154e-07</iyz>
+          <izz>4.3712e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='gripper_right_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/gripper_right_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='gripper_right_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/gripper_right_link.STL</uri>
+          </mesh>
+        </geometry>
+       <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='prop_1_joint' type='revolute'>
+      <pose relative_to='base_link'>0.18135 -0.314107 0 1.5708 -0 -2.80424</pose>
+      <parent>base_link</parent>
+      <child>prop_1_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_1_link'>
+      <pose relative_to='prop_1_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.0279209</mass>
+        <inertia>
+          <ixx>0.000201162</ixx>
+          <ixy>-1.50594e-17</ixy>
+          <ixz>-3.54794e-05</ixz>
+          <iyy>0.000209949</iyy>
+          <iyz>-9.3087e-17</iyz>
+          <izz>9.10136e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_1_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop_1_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_1_link.STL</uri>
+          </mesh>
+        </geometry>
+       <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='prop_2_joint' type='revolute'>
+      <pose relative_to='base_link'>0.3627 0 0 1.5708 -0 -1.73578</pose>
+      <parent>base_link</parent>
+      <child>prop_2_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_2_link'>
+      <pose relative_to='prop_2_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0 -0 0 -0 0</pose>
+        <mass>0.0279205</mass>
+        <inertia>
+          <ixx>0.000202042</ixx>
+          <ixy>-1.67659e-17</ixy>
+          <ixz>-3.37223e-05</ixz>
+          <iyy>0.000209943</iyy>
+          <iyz>-7.27421e-17</iyz>
+          <izz>8.2169e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_2_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop_2_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_2_link.STL</uri>
+          </mesh>
+        </geometry>
+       <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='prop_4_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.18135 0.314107 0 1.5708 -0 -2.78817</pose>
+      <parent>base_link</parent>
+      <child>prop_4_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_4_link'>
+      <pose relative_to='prop_4_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.0279209</mass>
+        <inertia>
+          <ixx>0.000200179</ixx>
+          <ixy>6.52149e-17</ixy>
+          <ixz>-3.72576e-05</ixz>
+          <iyy>0.000209949</iyy>
+          <iyz>5.22243e-17</iyz>
+          <izz>1.00846e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_4_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_4_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop_4_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_4_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <!-- Define a black material -->
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+      </visual>
+    </link>
+    <joint name='prop_5_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.3627 0 0 1.5708 0 1.38857</pose>
+      <parent>base_link</parent>
+      <child>prop_5_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_5_link'>
+      <pose relative_to='prop_5_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 -0 0 -0 0</pose>
+        <mass>0.0279205</mass>
+        <inertia>
+          <ixx>0.000200032</ixx>
+          <ixy>3.92299e-18</ixy>
+          <ixz>-3.75011e-05</ixz>
+          <iyy>0.000209944</iyy>
+          <iyz>7.48242e-18</iyz>
+          <izz>1.02264e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_5_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_5_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop_5_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_5_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+    <joint name='prop_6_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.18135 -0.314107 0 1.5708 0 2.43358</pose>
+      <parent>base_link</parent>
+      <child>prop_6_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_6_link'>
+      <pose relative_to='prop_6_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0 -0 0 -0 0</pose>
+        <mass>0.0279209</mass>
+        <inertia>
+          <ixx>0.000198411</ixx>
+          <ixy>-1.25768e-17</ixy>
+          <ixz>-4.00963e-05</ixz>
+          <iyy>0.000209949</iyy>
+          <iyz>6.3682e-17</iyz>
+          <izz>1.1853e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_6_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_6_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop_6_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://rmaluam/meshes/prop_6_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+  <!-- Define a reflective gray material -->
+  <ambient>0.5 0.5 0.5 1</ambient>
+  <diffuse>0.5 0.5 0.5 1</diffuse>
+  <specular>0.7 0.7 0.7 1</specular>
+  <emissive>0 0 0 1</emissive>
+</material>
+      </visual>
+    </link>
+
+
+
+
+  <plugin name="ros_kinematic" filename="libros_kinematic.so"/>
+  </model>
+</sdf>

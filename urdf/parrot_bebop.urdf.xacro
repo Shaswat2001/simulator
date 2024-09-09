@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="camera_offset_len" value="0.1" />
+  <xacro:property name="camera_offset_ver" value="0.0" />
+  <!-- +- 35 degrees -->
+  <xacro:property name="pan_range" value="0.6108652381980153" />
+  <xacro:property name="pan_vel" value="2.0" />
+  <!-- +- 35 degrees -->
+  <xacro:property name="tilt_range" value="0.6108652381980153" />
+  <xacro:property name="tilt_vel" value="2.0" />
+  <xacro:property name="joint_effort" value="50" />
+
+  <!-- Main quadrotor link -->
+  <xacro:macro name="bebop_base_macro">
+
+    <link name="world">
+      <inertial>
+        <mass value="0.0" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+        <!-- Inertia from hector quadrotor, sorry! -->
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </visual>
+
+    </link>
+
+    <joint name="virtual_joint" type="floating">
+      <parent link="world" />
+      <child link="base_link" />
+      <origin xyz="0 0 0" rpy = "0 0 0"/>
+    </joint>
+      
+    <link name="base_link">
+      <inertial>
+        <mass value="0.399" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.01152" ixy="0.0" ixz="0.0" iyy="0.01152" iyz="0.0" izz="0.0218" />
+        <!-- Inertia from hector quadrotor, sorry! -->
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://uamv0/models/parrot_bebop/meshes/bebop_model.stl"/>
+        </geometry>
+        <material name="blue">
+          <color rgba="0 0.4 0.6 1"/>
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://uamv0/models/parrot_bebop/meshes/bebop_model.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="camera_base_link"></link>
+    <link name="camera_pan_link"></link>
+    <link name="camera_tilt_link"></link>
+    <link name="camera_optical"></link>
+
+    <joint name="base_link_joint" type="fixed">
+      <origin xyz="${camera_offset_len} 0 ${camera_offset_ver}" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="camera_base_link" />
+    </joint>
+
+    <joint name="camera_pan_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="camera_base_link" />
+      <child link="camera_pan_link" />
+      <axis xyz="0 0 1" />
+      <limit lower="${-pan_range}" upper="${pan_range}"
+        effort="${joint_effort}" velocity="${pan_vel}" />
+    </joint>
+
+    <joint name="camera_tilt_joint" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="camera_pan_link" />
+      <child link="camera_tilt_link" />
+      <axis xyz="0 1 0" />
+      <limit lower="${-tilt_range}" upper="${tilt_range}"
+        effort="${joint_effort}" velocity="${tilt_vel}" />
+    </joint>
+
+    <joint name="camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
+      <parent link="camera_tilt_link" />
+      <child link="camera_optical" />
+    </joint>
+
+    <joint name='lidar_joint' type='fixed'>
+      <origin xyz="0 0 0.1" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="lidar_link"/>
+      <axis xyz="0 0 0"/>
+    </joint>
+    <link name='lidar_link'>
+      <!-- <origin xyz="0 0 0.1" rpy="0 0 0" /> -->
+      <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0.0" izz="1e-6" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.01" length="0.01"/>
+        </geometry>
+      </visual>
+      <!-- <collision name='lidar_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+            <cylinder>
+            <radius>0.01</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+      </collision> -->
+    </link>
+
+    <gazebo reference="lidar_link">
+      <sensor name="laser" type="ray">
+          <visualize>true</visualize>
+          <always_on>true</always_on>
+          <update_rate>10</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1.00000</resolution>
+                <min_angle>0.000000</min_angle>
+                <max_angle>6.280000</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.120000</min>
+              <max>1</max>
+              <resolution>0.015000</resolution>
+            </range>
+          </ray>
+
+          <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+              <output_type>sensor_msgs/LaserScan</output_type>
+              <frame_name>lidar_link</frame_name>
+          </plugin>
+      </sensor>
+    </gazebo>
+
+    <gazebo reference="base_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+  </xacro:macro>
+</robot>
