@@ -38,7 +38,7 @@
 #include <boost/numeric/odeint.hpp>
 #include <boost/numeric/odeint/external/eigen/eigen_algebra.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
-#include "uam_msgs/msg/dynamics.hpp"
+#include "aerialsys_msgs/msg/dynamics.hpp"
 #include "libraries/C_matrix.cpp"
 
 using namespace std::chrono_literals;
@@ -64,7 +64,7 @@ namespace gazebo
         gazebo::event::ConnectionPtr update_connection_;
 
         rclcpp::Subscription<rosgraph_msgs::msg::Clock>::SharedPtr clk_subscriber_;
-        rclcpp::Subscription<uam_msgs::msg::Dynamics>::SharedPtr desired_state_subscriber_;
+        rclcpp::Subscription<aerialsys_msgs::msg::Dynamics>::SharedPtr desired_state_subscriber_;
 
         rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
         rclcpp::TimerBase::SharedPtr timer_;
@@ -79,7 +79,7 @@ namespace gazebo
             const gazebo_ros::QoS &qos = this->ros_node_->get_qos();
             RCLCPP_WARN(this->ros_node_->get_logger(), "*Loading UAM Dynamics");
 
-            desired_state_subscriber_ = this->ros_node_->create_subscription<uam_msgs::msg::Dynamics>("/desired_uam_state", 10,std::bind(&UAMcontrolPush::uam_desired_stateCallback, this, std::placeholders::_1));
+            desired_state_subscriber_ = this->ros_node_->create_subscription<aerialsys_msgs::msg::Dynamics>("/desired_uam_state", 10,std::bind(&UAMcontrolPush::uam_desired_stateCallback, this, std::placeholders::_1));
             clk_subscriber_ = this->ros_node_->create_subscription<rosgraph_msgs::msg::Clock>("clock", 10, std::bind(&UAMcontrolPush::clk_update, this, std::placeholders::_1));
                        
             this->updateConnection = event::Events::ConnectWorldUpdateBegin(std::bind(&UAMcontrolPush::OnUpdate, this));
@@ -362,7 +362,7 @@ namespace gazebo
             std::cout<<" time : "<<t<<std::endl<<"position : "<<std::endl<<pos<<std::endl;
         }
 
-        void uam_desired_stateCallback(uam_msgs::msg::Dynamics::SharedPtr uam_des_msg) 
+        void uam_desired_stateCallback(aerialsys_msgs::msg::Dynamics::SharedPtr uam_des_msg) 
         { 
             RCLCPP_INFO(this->ros_node_->get_logger(), "UAM desired state recieved:");
 

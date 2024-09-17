@@ -14,10 +14,9 @@
   <depend>std_msgs</depend>
   <depend>geometry_msgs</depend>
   <depend>rosgraph_msgs</depend>
-  <depend>uamv0</depend>
-  <depend>uam_msgs</depend>
-  <depend>gazebo_ros_pkgs</depend>
- 
+  <depend>aerial_models</depend>
+  <depend>ros_ign_bridge</depend>
+  <depend>aerialsys_msgs</depend> 
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

@@ -25,9 +25,9 @@
 #include<ignition/math6/ignition/math/Pose3.hh>
 #include "std_msgs/msg/float32.hpp"
 #include <std_msgs/msg/string.hpp>
-#include "uam_msgs/srv/request_uav_vel.hpp"
-#include "uam_msgs/srv/response_uav_pose.hpp"
-#include "uam_msgs/srv/request_uav_pose.hpp"
+#include "aerialsys_msgs/srv/request_uav_vel.hpp"
+#include "aerialsys_msgs/srv/response_uav_pose.hpp"
+#include "aerialsys_msgs/srv/request_uav_pose.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -58,9 +58,9 @@ namespace gazebo
         rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
         rclcpp::TimerBase::SharedPtr timer_;
 
-        rclcpp::Service<uam_msgs::srv::ResponseUavPose>::SharedPtr return_pose_service;
-        rclcpp::Service<uam_msgs::srv::RequestUavVel>::SharedPtr request_vel_service;
-        rclcpp::Service<uam_msgs::srv::RequestUavPose>::SharedPtr request_pose_service;
+        rclcpp::Service<aerialsys_msgs::srv::ResponseUavPose>::SharedPtr return_pose_service;
+        rclcpp::Service<aerialsys_msgs::srv::RequestUavVel>::SharedPtr request_vel_service;
+        rclcpp::Service<aerialsys_msgs::srv::RequestUavPose>::SharedPtr request_pose_service;
 
         rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_subscriber_;
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr twst_subscriber_;
@@ -82,9 +82,9 @@ namespace gazebo
             RCLCPP_WARN(this->ros_node_->get_logger(), "*Loading Calmly* (LOL)");
 
             clk_subscriber_ = this->ros_node_->create_subscription<rosgraph_msgs::msg::Clock>("clock", 10, std::bind(&ModelPush::clk_update, this, std::placeholders::_1));
-            request_vel_service = this->ros_node_->create_service<uam_msgs::srv::RequestUavVel>("get_uav_vel", std::bind(&ModelPush::get_vel, this, std::placeholders::_1,std::placeholders::_2));
-            request_pose_service = this->ros_node_->create_service<uam_msgs::srv::RequestUavPose>("get_uav_pose", std::bind(&ModelPush::get_pose, this, std::placeholders::_1,std::placeholders::_2));
-            return_pose_service = this->ros_node_->create_service<uam_msgs::srv::ResponseUavPose>("send_uav_pose", std::bind(&ModelPush::return_pose, this, std::placeholders::_1,std::placeholders::_2));
+            request_vel_service = this->ros_node_->create_service<aerialsys_msgs::srv::RequestUavVel>("get_uav_vel", std::bind(&ModelPush::get_vel, this, std::placeholders::_1,std::placeholders::_2));
+            request_pose_service = this->ros_node_->create_service<aerialsys_msgs::srv::RequestUavPose>("get_uav_pose", std::bind(&ModelPush::get_pose, this, std::placeholders::_1,std::placeholders::_2));
+            return_pose_service = this->ros_node_->create_service<aerialsys_msgs::srv::ResponseUavPose>("send_uav_pose", std::bind(&ModelPush::return_pose, this, std::placeholders::_1,std::placeholders::_2));
            
             this->updateConnection = event::Events::ConnectWorldUpdateBegin(std::bind(&ModelPush::OnUpdate, this));
 
@@ -196,8 +196,8 @@ namespace gazebo
             r3_value_=double_r3_value_;
         }
 
-        void get_vel(std::shared_ptr<uam_msgs::srv::RequestUavVel::Request> request,
-          std::shared_ptr<uam_msgs::srv::RequestUavVel::Response> response)
+        void get_vel(std::shared_ptr<aerialsys_msgs::srv::RequestUavVel::Request> request,
+          std::shared_ptr<aerialsys_msgs::srv::RequestUavVel::Response> response)
         {
 
             drone_body_vel_string(request->uav_vel);
@@ -206,8 +206,8 @@ namespace gazebo
             response->successful = response_succ;
         }
 
-        void get_pose(std::shared_ptr<uam_msgs::srv::RequestUavPose::Request> request,
-          std::shared_ptr<uam_msgs::srv::RequestUavPose::Response> response)
+        void get_pose(std::shared_ptr<aerialsys_msgs::srv::RequestUavPose::Request> request,
+          std::shared_ptr<aerialsys_msgs::srv::RequestUavPose::Response> response)
         {
 
             drone_body_string(request->uav_pose);
@@ -217,8 +217,8 @@ namespace gazebo
             response->successful = response_succ;
         }
 
-        void return_pose(std::shared_ptr<uam_msgs::srv::ResponseUavPose::Request> request,
-          std::shared_ptr<uam_msgs::srv::ResponseUavPose::Response> response)
+        void return_pose(std::shared_ptr<aerialsys_msgs::srv::ResponseUavPose::Request> request,
+          std::shared_ptr<aerialsys_msgs::srv::ResponseUavPose::Response> response)
         {
 
             ignition::math::Pose3d pose_base = this->model->GetLink("base_link")->WorldPose();

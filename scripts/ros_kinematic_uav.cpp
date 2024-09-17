@@ -25,7 +25,7 @@
 #include<ignition/math6/ignition/math/Pose3.hh>
 #include "std_msgs/msg/float32.hpp"
 #include <std_msgs/msg/string.hpp>
-#include "uam_msgs/srv/request_uav_pose.hpp"
+#include "aerialsys_msgs/srv/request_uav_pose.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -56,7 +56,7 @@ namespace gazebo
         rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
         rclcpp::TimerBase::SharedPtr timer_;
 
-        rclcpp::Service<uam_msgs::srv::RequestUavPose>::SharedPtr service;
+        rclcpp::Service<aerialsys_msgs::srv::RequestUavPose>::SharedPtr service;
 
         rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_subscriber_;
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr twst_subscriber_;
@@ -78,7 +78,7 @@ namespace gazebo
             RCLCPP_WARN(this->ros_node_->get_logger(), "*Loading Calmly* (LOL)");
 
             clk_subscriber_ = this->ros_node_->create_subscription<rosgraph_msgs::msg::Clock>("clock", 10, std::bind(&ModelPush::clk_update, this, std::placeholders::_1));
-            service = this->ros_node_->create_service<uam_msgs::srv::RequestUavPose>("get_uav_pose", std::bind(&ModelPush::get_pose, this, std::placeholders::_1,std::placeholders::_2));
+            service = this->ros_node_->create_service<aerialsys_msgs::srv::RequestUavPose>("get_uav_pose", std::bind(&ModelPush::get_pose, this, std::placeholders::_1,std::placeholders::_2));
            
             this->updateConnection = event::Events::ConnectWorldUpdateBegin(std::bind(&ModelPush::OnUpdate, this));
 
@@ -141,8 +141,8 @@ namespace gazebo
             r3_value_=double_r3_value_;
         }
 
-        void get_pose(std::shared_ptr<uam_msgs::srv::RequestUavPose::Request> request,
-          std::shared_ptr<uam_msgs::srv::RequestUavPose::Response> response)
+        void get_pose(std::shared_ptr<aerialsys_msgs::srv::RequestUavPose::Request> request,
+          std::shared_ptr<aerialsys_msgs::srv::RequestUavPose::Response> response)
         {
 
             drone_body_string(request->uav_pose);

@@ -25,9 +25,9 @@
 #include<ignition/math6/ignition/math/Pose3.hh>
 #include "std_msgs/msg/float32.hpp"
 #include <std_msgs/msg/string.hpp>
-#include "uam_msgs/srv/request_uav_vel.hpp"
-#include "uam_msgs/srv/response_uav_pose.hpp"
-#include "uam_msgs/srv/request_uav_pose.hpp"
+#include "aerialsys_msgs/srv/request_uav_vel.hpp"
+#include "aerialsys_msgs/srv/response_uav_pose.hpp"
+#include "aerialsys_msgs/srv/request_uav_pose.hpp"
 #include <iostream>
 #include <string>
 #include <vector>

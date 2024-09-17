@@ -25,7 +25,7 @@
 #include<ignition/math6/ignition/math/Pose3.hh>
 #include "std_msgs/msg/float32.hpp"
 #include <std_msgs/msg/string.hpp>
-#include "uam_msgs/srv/uam.hpp"
+#include "aerialsys_msgs/srv/uam.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -56,7 +56,7 @@ namespace gazebo
         rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
         rclcpp::TimerBase::SharedPtr timer_;
     
-        rclcpp::Service<uam_msgs::srv::Uam>::SharedPtr service;
+        rclcpp::Service<aerialsys_msgs::srv::Uam>::SharedPtr service;
 
         rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_subscriber_;
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr twst_subscriber_;
@@ -82,7 +82,7 @@ namespace gazebo
             manip_ee_pub_ = this->ros_node_->create_publisher<geometry_msgs::msg::Pose>("/manipulator_ee",10);
             manip_ee_diff_pub_ = this->ros_node_->create_publisher<geometry_msgs::msg::Pose>("/manipulator_ee_difference",10);
 
-            service = this->ros_node_->create_service<uam_msgs::srv::Uam>("get_manip_pose", std::bind(&ModelPush::add, this, std::placeholders::_1,std::placeholders::_2));
+            service = this->ros_node_->create_service<aerialsys_msgs::srv::Uam>("get_manip_pose", std::bind(&ModelPush::add, this, std::placeholders::_1,std::placeholders::_2));
             
             joint_subscription_ = this->ros_node_->create_subscription<std_msgs::msg::String>("/robot_joints_string", 10,std::bind(&ModelPush::robot_joint_stringCallback, this, std::placeholders::_1));
             body_subscription_ = this->ros_node_->create_subscription<std_msgs::msg::String>("/drone_body_string", 10,std::bind(&ModelPush::drone_body_stringCallback, this, std::placeholders::_1));
@@ -283,8 +283,8 @@ namespace gazebo
             r3_value_=double_r3_value_;
         }
 
-        void add(std::shared_ptr<uam_msgs::srv::Uam::Request> request,
-          std::shared_ptr<uam_msgs::srv::Uam::Response> response)
+        void add(std::shared_ptr<aerialsys_msgs::srv::Uam::Request> request,
+          std::shared_ptr<aerialsys_msgs::srv::Uam::Response> response)
         {
 
             drone_body_string(request->uav_pose);

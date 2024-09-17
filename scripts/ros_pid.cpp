@@ -31,7 +31,7 @@
 #include <vector>
 #include <sstream>
 #include "Eigen/Dense"
-#include "uam_msgs/msg/states.hpp"
+#include "aerialsys_msgs/msg/states.hpp"
 
 using namespace std::chrono_literals;
 using std::placeholders::_1;
@@ -50,8 +50,8 @@ namespace gazebo
 
         /// Subscriber to command velocities
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
-        rclcpp::Publisher<uam_msgs::msg::States>::SharedPtr uam_states_pub_;
-        uam_msgs::msg::States uam_state;
+        rclcpp::Publisher<aerialsys_msgs::msg::States>::SharedPtr uam_states_pub_;
+        aerialsys_msgs::msg::States uam_state;
 
         /// Connection to event called at every world iteration.
         gazebo::event::ConnectionPtr update_connection_;
@@ -72,7 +72,7 @@ namespace gazebo
             RCLCPP_WARN(this->ros_node_->get_logger(), "*Loading PID controller");
 
             clk_subscriber_ = this->ros_node_->create_subscription<rosgraph_msgs::msg::Clock>("clock", 10, std::bind(&UAMcontrolPush::clk_update, this, std::placeholders::_1));
-            uam_states_pub_ = this->ros_node_->create_publisher<uam_msgs::msg::States>("/states",10);
+            uam_states_pub_ = this->ros_node_->create_publisher<aerialsys_msgs::msg::States>("/states",10);
                        
             this->updateConnection = event::Events::ConnectWorldUpdateBegin(std::bind(&UAMcontrolPush::OnUpdate, this));
             joint1_value_=0;
